@@ -6,19 +6,20 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  onAuthStateChanged
 } from 'firebase/auth'
 
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCTlFDeMDIiK457mj3-sW3YQqsikI9wquA',
-  authDomain: 'crown-db-51d0e.firebaseapp.com',
-  projectId: 'crown-db-51d0e',
-  storageBucket: 'crown-db-51d0e.appspot.com',
-  messagingSenderId: '335231275333',
-  appId: '1:335231275333:web:cedd7d730ea49e29a8ee2c'
-}
+  apiKey: "AIzaSyDK7Jv1VDhxotrEICnupdestSQ7AsPShy0",
+  authDomain: "crown-shop-655b9.firebaseapp.com",
+  projectId: "crown-shop-655b9",
+  storageBucket: "crown-shop-655b9.appspot.com",
+  messagingSenderId: "146222269057",
+  appId: "1:146222269057:web:beb795b11f86ad5a980380"
+};
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig)
@@ -77,4 +78,7 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
   return await signInWithEmailAndPassword(auth, email, password)
 }
 
-export const signOutUser = async () => await signOut(auth);
+export const signOutUser = async () => await signOut(auth)
+
+export const onAuthStatChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback)
